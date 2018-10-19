@@ -12,6 +12,9 @@ public class Weapon : ScriptableObject
     public float projectileSpread;
     public int startingAmmo;
     public float projectileSpeed;
+    public float range;
+    public float damageFalloffPerUnit;
+    public GameObject bullet;
 
     public AudioClip reloadSound;
     public AudioClip firingSound;
