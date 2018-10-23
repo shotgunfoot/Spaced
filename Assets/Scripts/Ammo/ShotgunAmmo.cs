@@ -1,13 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
-{
-    public int ammoPerPickup;
+public class ShotgunAmmo : Ammo
+{    
+    public GameEventWithParameter ShotgunAmmoPickupEvent;
     AudioSource sound;
     MeshRenderer mesh;
-    
+
     private void Start()
     {
         sound = GetComponent<AudioSource>();
@@ -18,13 +17,12 @@ public class AmmoPickup : MonoBehaviour
     {
         if (other.GetComponentInParent<CustomTag>().HasTag("Player"))
         {
-            InventoryBasic inventory = other.GetComponentInParent<InventoryBasic>();
-            inventory.AddShells(ammoPerPickup);
+            ShotgunAmmoPickupEvent.Raise();
             mesh.enabled = false;
             StartCoroutine(DestroyAfterSound());
         }
     }
-
+   
     IEnumerator DestroyAfterSound()
     {
         sound.Play();
@@ -32,7 +30,6 @@ public class AmmoPickup : MonoBehaviour
         {
             yield return null;
         }
-        Destroy(gameObject);        
+        Destroy(gameObject);
     }
-
 }

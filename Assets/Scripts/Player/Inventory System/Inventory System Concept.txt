@@ -1,0 +1,69 @@
+Inventory System Concept with Pseudo-Code
+
+Basic inventory (naked person) has only a number of slots available to the player. 
+
+---Ammo---
+
+-Should ammo take up a slot?
+-Does ammo stack? If yes, how? And are there limits? i.e having 100000 rounds of ammo.
+-How would we make stackable ammo?
+
+Public Abstract Class Ammo
+{
+	private int stackLimit;
+	private int stackCount;
+
+	private void Add()
+	{
+			
+		if(stackCount >= stackLimit)
+		{
+			stackCount = stackLimit;
+		}else
+		{
+			stackCount++;	
+		}
+	}
+
+	private void Remove()
+	{
+		if(stackCount > 0)
+		{
+			stackCount--;
+		}
+	}
+}
+
+---Inventory Rules---
+
+-Items can take up more than one unit of space. I.e a large item (Fire Extinguisher takes up 2 slots) wheras ammo takes up 1 slot but can stack until a limit is reached.
+
+-Combinable items can !never! (maybe revisit that) be combined in inventory. Have to be placed in world and used with hands.
+
+---Inventory Rules---
+
+----Tiered Inventory Idea----
+
+-Tiered Inventory System that overlaps?
+(see image "Tiered Visual Concept")
+
+-Items take up space in inventory, i.e 2 handed objects take up more slots than 1 handed items.
+
+-Since inventory overlaps can players place items in such a way that they are both inside the base inventory and backpack inventory. 
+
+-How would you handle removing backpacks if items are allowed to overlap inventory sections?
+
+CON - Depending on how it is portrayed it is not very clear to the player how to use the inventory system.
+
+----Tiered Inventory Idea----
+
+----Self Contained Inventory boxes---
+
+-How should it look in an inventory screen?
+(see "Self Contained inventory boxes.png")
+
+-What happens when players take off clothes/backpack?
+
+-PRO - Self contained instances of inventory, can be placed in world and picked up again later. Can be adapted to other inventory boxes in game (i.e boxes, shelves, lockers...) and what not in game.
+
+----Self Contained Inventory boxes----
