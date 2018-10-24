@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Sirenix.OdinInspector;
 
-public abstract class SingleHandItem : MonoBehaviour
+public abstract class SingleHandItem : Item
 {
     public virtual void Action() { }
     public virtual void DisableColliders() { }

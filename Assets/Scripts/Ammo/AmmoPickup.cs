@@ -18,7 +18,7 @@ public class AmmoPickup : MonoBehaviour
     {
         if (other.GetComponentInParent<CustomTag>().HasTag("Player"))
         {
-            InventoryBasic inventory = other.GetComponentInParent<InventoryBasic>();
+            InventoryBasic inventory = other.GetComponentInChildren<InventoryBasic>();
             inventory.AddShells(ammoPerPickup);
             mesh.enabled = false;
             StartCoroutine(DestroyAfterSound());

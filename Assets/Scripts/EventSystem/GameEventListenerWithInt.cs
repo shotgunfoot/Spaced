@@ -1,13 +1,14 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class GameEventListenerWithParameter : MonoBehaviour
+public class GameEventListenerWithInt : MonoBehaviour
 {
     [Tooltip("Event to register with.")]
-    public GameEventWithParameter Event;
+    public GameEventWithInt Event;
 
     [Tooltip("Response to invoke when Event is raised.")]
-    public UnityEventWithParameter Response;
+    public UnityEventWithInt Response;
 
     private void OnEnable()
     {
@@ -19,8 +20,8 @@ public class GameEventListenerWithParameter : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised(GameObject obj)
+    public void OnEventRaised(int n)
     {
-        Response.Invoke(obj);
+        Response.Invoke(n);
     }
 }

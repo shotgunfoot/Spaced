@@ -1,35 +1,33 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ShotgunAmmo : Ammo
-{    
-    public GameEventWithParameter ShotgunAmmoPickupEvent;
-    AudioSource sound;
-    MeshRenderer mesh;
+public class ShotgunAmmo : Ammo, IVisibility, IInteractionSound
+{
+    private MeshRenderer mesh;
+    private BoxCollider coll;
+    private AudioSource source;
 
     private void Start()
     {
-        sound = GetComponent<AudioSource>();
         mesh = GetComponent<MeshRenderer>();
+        coll = GetComponent<BoxCollider>();
+        source = GetComponent<AudioSource>();
+    }   
+
+    public void SetVisible()
+    {
+        mesh.enabled = true;
+        coll.enabled = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void SetInvisible()
     {
-        if (other.GetComponentInParent<CustomTag>().HasTag("Player"))
-        {
-            ShotgunAmmoPickupEvent.Raise();
-            mesh.enabled = false;
-            StartCoroutine(DestroyAfterSound());
-        }
+        mesh.enabled = false;
+        coll.enabled = false;
     }
-   
-    IEnumerator DestroyAfterSound()
+
+    public void PlaySound()
     {
-        sound.Play();
-        while (sound.isPlaying)
-        {
-            yield return null;
-        }
-        Destroy(gameObject);
+        source.Play();
     }
 }

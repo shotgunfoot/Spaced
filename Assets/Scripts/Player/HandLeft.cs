@@ -11,7 +11,7 @@ public class HandLeft : MonoBehaviour
     /// 
 
     [ShowInInspector]
-    private GameObject itemInHand;
+    private Item itemInHand;
     private SingleHandItem itemBase;
     public Transform HandPoint;
     public Transform DropPoint;
@@ -25,16 +25,12 @@ public class HandLeft : MonoBehaviour
             {
                 itemInHand.GetComponent<SingleHandItem>().Action();
             }
-            else
-            {
-                Debug.Log("Left Hand is empty!");
-            }
         }
     }
 
-    public void SetObjectInHand(GameObject obj)
+    public void SetObjectInHand(Item item)
     {
-        itemInHand = obj;
+        itemInHand = item;
         itemBase = itemInHand.GetComponent<SingleHandItem>();
 
         itemInHand.transform.parent = HandPoint.transform;
@@ -43,9 +39,6 @@ public class HandLeft : MonoBehaviour
 
         itemInHand.GetComponent<Rigidbody>().isKinematic = true;
         itemBase.DisableColliders();
-
-        //set the parent and transform to the position of the hand.
-
     }
 
     public void DropItemInHand()
@@ -61,7 +54,7 @@ public class HandLeft : MonoBehaviour
         }
     }
 
-    public GameObject GetObjectInHand()
+    public Item GetObjectInHand()
     {
         return itemInHand;
     }
